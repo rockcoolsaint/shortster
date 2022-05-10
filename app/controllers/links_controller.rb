@@ -16,19 +16,19 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
     @link.shortcode = Link.generate_shortcode if params[:shortcode].nil?
-    if @link.save
+    if @link.save!
       json_response({
         data: @link,
         message: "Link created",
         errMessage: nil
       }, :created)
-    else
-      json_response({
-        data: nil,
-        message: "Error",
-        errMessage: "Failed to create link"
-      })
     end
+  rescue ActiveRecord::RecordInvalid => e
+    json_response({
+      data: nil,
+      message: "Error",
+      errMessage: e
+    }, :unprocessable_entity)
   end
 
   def stats
@@ -45,6 +45,4 @@ class LinksController < ApplicationController
   def link_params
     params.permit(:url, :shortcode)
   end
-
-  
 end
