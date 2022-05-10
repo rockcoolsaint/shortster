@@ -6,10 +6,10 @@ class LinksController < ApplicationController
         @link.update(last_accessed: Time.now, access_count: @link.access_count + 1)
         redirect_to @link.url if @link
       else
-        render plain: "Invalid link"
+        render plain: "Invalid link", status: :unprocessable_entity
       end
-    else
-      render plain: "Welcome to shortster"
+    # else
+    #   render plain: "Welcome to shortster"
     end
   end
   
