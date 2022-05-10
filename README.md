@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This solution assumes that the application is restricted admin user so no need for a user profile.
 
-Things you may want to cover:
+The following are the available endpoints:
 
-* Ruby version
+* GET /:shortcode
 
-* System dependencies
+* POST /submit {params}
 
-* Configuration
+* GET /:shortcode/stats
 
-* Database creation
+### The following command runs the tests specs
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* bundle exec specs
